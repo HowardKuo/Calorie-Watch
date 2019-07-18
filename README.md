@@ -1,29 +1,13 @@
-# Create React Express App
+# Calorie Watch
 
-## About This Boilerplate
+## Heroku Link
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+You can find this app on <https://calorie-watch.herokuapp.com/>.
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+## About this App
 
-## Starting the app locally
+This app is all about watching what you eat and keeping track of what you are eating throughout the day. Take a picture of your food and upload it onto the app. The app will ask you to confirm what you have eaten and will take the calories of that food and add it to your list of eaten food. It will add up all calories of the food you have eaten and tell you if you have gone over your calorie goal or tell you how many calories you have left for the day.
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+## Flowchart of App
 
-```
-npm install
-```
-
-This should install node modules within the server and the client folder.
-
-After both installations complete, run the following command in your terminal:
-
-```
-npm start
-```
-
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+![Workflow](flowchart/flowchart.jpg)
