@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(router);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/caloriesearch');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/caloriesearch',{ useNewUrlParser: true });
 
 // Start the API server
 app.listen(PORT, () => {

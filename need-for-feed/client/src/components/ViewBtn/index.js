@@ -6,7 +6,7 @@ import "./style.css";
 // That way we don't have to define them all individually
 function ViewBtn(props) {
   return (
-    <a href={props.link} alt={props.title} {...props}>
+    <a href={props.link} alt={props.food} {...props}>
       <button className="btn btn-primary view-btn">
         View
       </button>

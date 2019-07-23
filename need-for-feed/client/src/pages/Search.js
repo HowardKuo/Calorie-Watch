@@ -11,11 +11,11 @@ import { Input, FormBtn } from "../components/Form";
 class Detail extends Component {
   state = {
     calories: {},
-    title: ''
+    food: ''
   };
 
   componentDidMount() {
-    this.setState({ calories: {}, title: '' });
+    this.setState({ calories: {}, food: '' });
   }
 
   handleInputChange = event => {
@@ -26,11 +26,11 @@ class Detail extends Component {
   savecalorie = calorieID => {
     const calorie = this.state.calories.find(calorie => calorie.id === calorieID);
     API.savecalorie({
-      title: calorierie.volumeInfo.title,
-      author: calorie.volumeInfo.authors[0],
-      description: calorie.volumeInfo.description,
-      image: calorie.volumeInfo.imageLinks.thumbnail,
-      link: calorie.volumeInfo.previewLink
+      food: calorie.nutritionInfo.food,
+      calories: calorie.nutritionInfo.calories[0],
+      description: calorie.nutritionInfo.description,
+      image: calorie.nutritionInfo.imageLinks.thumbnail,
+      link: calorie.nutritionInfo.previewLink
     }).then(() => {
       this.setState({
         calories: this.state.calories.filter(calorie => calorie.id !== calorieID)
@@ -38,7 +38,7 @@ class Detail extends Component {
     }).catch(err => console.log(err));
   }
 
-  viewcalorie = url => {
+  viewCalorie = url => {
     window.location = url;
   }
 
@@ -49,7 +49,7 @@ class Detail extends Component {
   searchcalorie = event => {
     event.preventDefault();
 
-    API.getTitles(this.state.title)
+    API.getFoods(this.state.food)
     .then(results => this.showCalories(results))
     .catch(err => console.log(err));
   }
@@ -59,7 +59,7 @@ class Detail extends Component {
       <Container fluid>
         <Row>
           <Jumbotron>
-            <h1>(React) Google calorie Search</h1>
+            <h1>(React) Nutrition calorie Search</h1>
           </Jumbotron>
         </Row>
         <Row>
@@ -67,10 +67,10 @@ class Detail extends Component {
             <h2>calorie Search</h2>
             <form>
               <Input
-                name='title'
-                value={this.state.title}
+                name='food'
+                value={this.state.food}
                 onChange={this.handleInputChange}
-                placeholder='calorie Title'
+                placeholder='calorie food'
               />
               <FormBtn onClick={this.searchcalorie}>
                 Search
@@ -87,16 +87,16 @@ class Detail extends Component {
                     <Row>
                       <Col size='8'>
                       <strong>
-                        {calorie.volumeInfo.title}
+                        {calorie.nutritionInfo.food}
                       </strong>
                       </Col>
                       <Col size='4'>
-                        <SaveBtn onClick={() => this.savecalorie(calorie.id)} />
-                        <ViewBtn onClick={() => this.viewcalorierie(calorie.volumeInfo.previewLink)} />
+                        <SaveBtn onClick={() => this.saveCalories(calorie.id)} />
+                        <ViewBtn onClick={() => this.viewCalories(calorie.nutritionInfo.previewLink)} />
                       </Col>
                     </Row>
-                    <p>Written by {calorie.volumeInfo.authors[0] || "Not provided by Google calories API"}</p>
-                    <p className='text-justify'>{calorie.volumeInfo.description}</p>
+                    <p>Written by {calorie.nutritionInfo.calories[0] || "Not provided by Google calories API"}</p>
+                    <p className='text-justify'>{calorie.nutritionInfo.description}</p>
                   </ListItem>
                 ))}
               </List>

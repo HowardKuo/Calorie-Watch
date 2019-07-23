@@ -1,23 +1,28 @@
 import axios from 'axios';
 
+const BASEURL = "http://api.wolframalpha.com/v2/query?input=sandwich";
+const APIKEY = "&appid=2YQXJV-EU99R49WGRy";
+
+
+
 export default {
   // Gets all Calories
   getCalories: () => {
     return axios.get('/api/calories');
   },
   // Gets the calorie with the given id
-  getcalorie: (id) => {
+  getCalorie: (id) => {
     return axios.get(`/api/calories/${id}`);
   },
   // Deletes the calorie with the given id
-  deletecalorie: (id) => {
+  deleteCalorie: (id) => {
     return axios.delete(`/api/calories/${id}`);
   },
   // Saves a calorie to the database
-  savecalorie: (calorieData) => {
+  saveCalorie: (calorieData) => {
     return axios.post('/api/calories', calorieData);
   },
-  getTitles: (calorieTitle) => {
-    return axios.get(`https://www.googleapis.com/calories/v1/volumes?q=title:${calorieTitle}`);
+  getFoods: (query) => {
+    return axios.get(BASEURL + query + APIKEY);
   }
 };
