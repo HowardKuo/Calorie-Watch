@@ -72,7 +72,7 @@ class Detail extends Component {
                 onChange={this.handleInputChange}
                 placeholder='food nutrition'
               />
-              <FormBtn onClick={this.searchcalorie}>
+              <FormBtn onClick={this.searchCalorie}>
                 Search
               </FormBtn>
             </form>
@@ -80,7 +80,7 @@ class Detail extends Component {
         </Row>
         <Row>
           <Container>
-            {this.state.calories.length ? (
+            {this.state.calories.length? (
               <List>
                 {this.state.calories.map(calorie => (
                   <ListItem key={calorie.id}>

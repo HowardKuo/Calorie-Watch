@@ -4,7 +4,7 @@ const db = require('../models');
 // This file empties the calories collection and inserts the calories below
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/caloriesearch',
+  process.env.MONGODB_URI || 'mongodb://localhost/calories',
 );
 
 const calorieseed = [
