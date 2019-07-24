@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const calorierouter = require('./calories');
+const calorieRoutes = require('./calories');
 
-// calorie router
-router.use('/calories', calorierouter);
+// Book routes
+router.use('/calories', calorieRoutes);
 
 module.exports = router;
