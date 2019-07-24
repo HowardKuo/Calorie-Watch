@@ -9,11 +9,13 @@ import { List, ListItem } from "../components/List";
 
 class Calories extends Component {
   state = {
-    food: [],
-    calories: "",
+    calories:[],
+    food:"",
     protein: "",
     sugars: "",
     carbs: "",
+    image:"",
+    description:"",
     link:""
   };
 
@@ -25,11 +27,13 @@ class Calories extends Component {
     API.getCalories()
       .then(res =>
         this.setState({
-          Calories: res.data,
+          calories: res.data,
           food: "",
-          author: "",
-          description: "",
-          image: "",
+          protein:"",
+          sugars:"",
+          carbs:"",
+          image:"",
+          description:"",
           link:""
         })
       )
@@ -51,7 +55,7 @@ class Calories extends Component {
       <Container fluid>
         <Row>
           <Jumbotron>
-            <h1>(React) Food Calorie Search</h1>
+            <h1>(React) Nutritional Search</h1>
           </Jumbotron>
         </Row>
         <Row>

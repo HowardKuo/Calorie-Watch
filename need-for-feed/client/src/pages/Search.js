@@ -23,9 +23,9 @@ class Detail extends Component {
     this.setState({ [name]: value });
   }
 
-  savecalorie = calorieID => {
+  saveCalorie = calorieID => {
     const calorie = this.state.calories.find(calorie => calorie.id === calorieID);
-    API.savecalorie({
+    API.saveCalorie({
       food: calorie.nutritionInfo.food,
       calories: calorie.nutritionInfo.calories[0],
       description: calorie.nutritionInfo.description,
@@ -46,7 +46,7 @@ class Detail extends Component {
     this.setState({ calories: data.data.items });
   }
 
-  searchcalorie = event => {
+  searchCalorie = event => {
     event.preventDefault();
 
     API.getFoods(this.state.food)
@@ -70,7 +70,7 @@ class Detail extends Component {
                 name='food'
                 value={this.state.food}
                 onChange={this.handleInputChange}
-                placeholder='calorie food'
+                placeholder='food nutrition'
               />
               <FormBtn onClick={this.searchcalorie}>
                 Search
@@ -91,8 +91,8 @@ class Detail extends Component {
                       </strong>
                       </Col>
                       <Col size='4'>
-                        <SaveBtn onClick={() => this.saveCalories(calorie.id)} />
-                        <ViewBtn onClick={() => this.viewCalories(calorie.nutritionInfo.previewLink)} />
+                        <SaveBtn onClick={() => this.saveCalorie(calorie.id)} />
+                        <ViewBtn onClick={() => this.viewCalorie(calorie.nutritionInfo.previewLink)} />
                       </Col>
                     </Row>
                     <p>Written by {calorie.nutritionInfo.calories[0] || "Not provided by Google calories API"}</p>
