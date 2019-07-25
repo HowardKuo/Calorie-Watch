@@ -18,4 +18,4 @@ This app is all about watching what you eat and keeping track of what you are ea
 
 ## Flowchart of App
 
-![Workflow](flowchart/flowchart.jpg)
+![Workflow](flowchart.jpg)
