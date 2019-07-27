@@ -1,0 +1,39 @@
+.topRow {
+    /*background-color: gray;*/
+    background-image: url(../food-bkg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 585px;
+    padding: 100px;
+  }
+  
+  .contain  h1 {
+    color: #434343;
+    font: 32px Montserrant, sans-serif;
+    text-align: center;
+  }
+  
+  .contain  p {
+    color: #434343;
+    font: 20px Montserrant, sans-serif;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .buttonBox {
+    margin: auto;
+    background-color: white;
+    max-width: 300px;
+    height: 300px;
+    padding: 70px;
+  }
+  
+  .btnContainer {
+    text-align: center;
+  }
+  footer.page-footer {
+    margin: 0 !important;
+  }
+  
+  .block {
+    margin-bottom: 25px;
+  }
