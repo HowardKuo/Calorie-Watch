@@ -86,7 +86,7 @@ render() {
                     <h2>Let's see what you're eating.</h2>
                     <form action="#">
                         <input type="file" id="filename" placeholder="Filename" size="100"/>
-                        <MDBBtn onclick="predict_click($('#filename').val(), 'file'); return false;">Get my Nutritional Breakdown!</MDBBtn>
+                        <MDBBtn onClick={() => "predict_click($('#filename').val(), 'file'); return false;"}>Get my Nutritional Breakdown!</MDBBtn>
                     </form>
                     
                     <div className="food-photo"></div>

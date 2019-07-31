@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import FoodEntries from '../components/FoodEntries';
 import Progress from '../components/Progress';
 import FoodSearch from '../components/FoodSearch';
-import { MDBBtn } from "mdbreact";
 import '../pages/style.css';
 
 class User extends Component {
