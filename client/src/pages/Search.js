@@ -8,106 +8,112 @@ import API from "../utils/API";
 import { List, ListItem } from "../components/List";
 import { Input, FormBtn } from "../components/Form";
 
-class Detail extends Component {
+class Search extends Component {
   state = {
-    calories: {},
-    food: ''
+    foods: [],
+    q: '',
+    message: "search food to begin"
   };
 
-  componentDidMount() {
-    this.setState({ calories: {}, food: '' });
-  }
-
+  
   handleInputChange = event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
-  }
+    this.setState({
+      [name]: value
+    });
+  };
 
-  savecalorie = calorieID => {
-    const calorie = this.state.calories.find(calorie => calorie.id === calorieID);
-    API.savecalorie({
-      food: calorie.nutritionInfo.food,
-      calories: calorie.nutritionInfo.calories[0],
-      description: calorie.nutritionInfo.description,
-      image: calorie.nutritionInfo.imageLinks.thumbnail,
-      link: calorie.nutritionInfo.previewLink
-    }).then(() => {
-      this.setState({
-        calories: this.state.calories.filter(calorie => calorie.id !== calorieID)
-      });
-    }).catch(err => console.log(err));
-  }
+  getFoods = () => {
+    API.getFoods(this.state.q)
+      .then(res =>
+        this.setState({
+          books: res.data
+        })
+      )
+      .catch(() =>
+        this.setState({
+          foods: [],
+          message: "No New foods Found, Try a Different Query"
+        })
+      );
+  };
 
-  viewCalorie = url => {
-    window.location = url;
-  }
-
-  showCalories = data => {
-    this.setState({ calories: data.data.items });
-  }
-
-  searchcalorie = event => {
+  handleFormSubmit = event => {
     event.preventDefault();
+    this.getFoods();
+  };
 
-    API.getFoods(this.state.food)
-    .then(results => this.showCalories(results))
-    .catch(err => console.log(err));
-  }
+  handleFoodSave = id => {
+    const food = this.state.foods.find(food => food.id === id);
+
+    API.saveFood({
+      wolfId: food.id,
+      title: food.volumeInfo.title,
+      subtitle: food.volumeInfo.subtitle,
+      link: food.volumeInfo.infoLink,
+      authors: food.volumeInfo.authors,
+      description: food.volumeInfo.description,
+      image: food.volumeInfo.imageLinks.thumbnail
+    }).then(() => this.getFoods());
+  };
 
   render() {
     return (
-      <Container fluid>
+      <Container>
         <Row>
-          <Jumbotron>
-            <h1>(React) Nutrition calorie Search</h1>
-          </Jumbotron>
-        </Row>
-        <Row>
-          <Container>
-            <h2>calorie Search</h2>
-            <form>
-              <Input
-                name='food'
-                value={this.state.food}
-                onChange={this.handleInputChange}
-                placeholder='calorie food'
+          <Col size="md-12">
+            <Jumbotron>
+              <h1 className="text-center">
+                <strong>(React) Nutrition Search</strong>
+              </h1>
+              <h2 className="text-center">Search for and Save foods of Interest.</h2>
+            </Jumbotron>
+          </Col>
+          <Col size="md-12">
+            <Card title="Food Search" icon="far fa-food">
+              <Form
+                handleInputChange={this.handleInputChange}
+                handleFormSubmit={this.handleFormSubmit}
+                q={this.state.q}
               />
-              <FormBtn onClick={this.searchcalorie}>
-                Search
-              </FormBtn>
-            </form>
-          </Container>
+            </Card>
+          </Col>
         </Row>
         <Row>
-          <Container>
-            {this.state.calories.length ? (
-              <List>
-                {this.state.calories.map(calorie => (
-                  <ListItem key={calorie.id}>
-                    <Row>
-                      <Col size='8'>
-                      <strong>
-                        {calorie.nutritionInfo.food}
-                      </strong>
-                      </Col>
-                      <Col size='4'>
-                        <SaveBtn onClick={() => this.saveCalories(calorie.id)} />
-                        <ViewBtn onClick={() => this.viewCalories(calorie.nutritionInfo.previewLink)} />
-                      </Col>
-                    </Row>
-                    <p>Written by {calorie.nutritionInfo.calories[0] || "Not provided by Google calories API"}</p>
-                    <p className='text-justify'>{calorie.nutritionInfo.description}</p>
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Container>
+          <Col size="md-12">
+            <Card title="Results">
+              {this.state.foods.length ? (
+                <List>
+                  {this.state.foods.map(food => (
+                    <Food
+                      key={food.id}
+                      title={food.nutritionInfo.title}
+                      subtitle={food.nutritionInfo.subtitle}
+                      link={food.nutritionInfo.infoLink}
+                      authors={food.nutritionInfo.authors.join(", ")}
+                      description={food.nutritionInfo.description}
+                      image={food.nutritionInfo.imageLinks.thumbnail}
+                      Button={() => (
+                        <button
+                          onClick={() => this.handleFoodSave(food.id)}
+                          className="btn btn-primary ml-2"
+                        >
+                          Save
+                        </button>
+                      )}
+                    />
+                  ))}
+                </List>
+              ) : (
+                <h2 className="text-center">{this.state.message}</h2>
+              )}
+            </Card>
+          </Col>
         </Row>
+        <Footer />
       </Container>
     );
   }
 }
 
-export default Detail;
+export default Search;
