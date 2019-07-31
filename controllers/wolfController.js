@@ -10,18 +10,20 @@ module.exports = {
   findAll: function(req, res) {
     const { query: params } = req;
     axios
-      .get("http://api.wolframalpha.com/v2/query?input=sandwich&appid=2YQXJV-EU99R49WGR", {
+      .get('https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id=fc80618b&app_key=e29f77b6cc9b2a86258b178a1e46b2bd', {
         params
       })
       .then(results =>
         results.data.items.filter(
           result =>
-            result.nutritionInfo.title &&
-            result.nutritionInfo.infoLink &&
-            result.nutritionInfo.authors &&
-            result.nutritionInfo.description &&
-            result.nutritionInfo.imageLinks &&
-            result.nutritionInfo.imageLinks.thumbnail
+            result.nutritionInfo.label&&
+            result.nutritionInfo.measure &&
+            result.nutritionInfo.nutrients&&
+            result.nutritionInfo.nutrients&&
+            result.nutritionInfo.foodId,
+
+            console.log(data)
+            
         )
       )
       .then(apiFoods =>
