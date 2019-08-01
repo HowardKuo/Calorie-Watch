@@ -1,28 +1,20 @@
-import axios from 'axios';
-
-const BASEURL = "http://api.wolframalpha.com/v2/query?input=sandwich";
-const APIKEY = "&appid=2YQXJV-EU99R49WGRy";
-
-
+import axios from "axios";
 
 export default {
-  // Gets all Calories
-  getCalories: () => {
-    return axios.get('/api/calories');
+  // Gets books from the Google API
+  getBooks: function(q) {
+    return axios.get("/api/wolf", { params: { q: "title:" + q } });
   },
-  // Gets the calorie with the given id
-  getCalorie: (id) => {
-    return axios.get(`/api/calories/${id}`);
+  // Gets all saved books
+  getSavedBooks: function() {
+    return axios.get("/api/foods");
   },
-  // Deletes the calorie with the given id
-  deleteCalorie: (id) => {
-    return axios.delete(`/api/calories/${id}`);
+  // Deletes the saved book with the given id
+  deleteBook: function(id) {
+    return axios.delete("/api/foods/" + id);
   },
-  // Saves a calorie to the database
-  saveCalorie: (calorieData) => {
-    return axios.post('/api/calories', calorieData);
-  },
-  getFoods: (query) => {
-    return axios.get(BASEURL + query + APIKEY);
+  // Saves an book to the database
+  saveBook: function(foodData) {
+    return axios.post("/api/foods", foodData);
   }
 };
