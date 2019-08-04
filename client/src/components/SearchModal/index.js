@@ -114,20 +114,20 @@ class SearchModal extends Component {
           <MDBModalHeader toggle={this.toggle(9)}>Food Image Upload</MDBModalHeader>
           <MDBModalBody>
             <Row>
-<<<<<<< HEAD
+
                 <Col md={6}>
                     <h2>Let's see what you're eating.</h2>
                     <form action="#">
                         <input type="file" id="filename" placeholder="Filename" size="100"/>
-<<<<<<< HEAD
+
                         <MDBBtn onClick={() => "predict_click($('#filename').val(), 'file'); return false;"}>Get my Nutritional Breakdown!</MDBBtn>
-=======
+
                         <MDBBtn onClick={() => {
                             this.predict_click(document.getElementById('filename').value, 'file');
                             return false;
                           }
                         }>Get my Nutritional Breakdown!</MDBBtn>
->>>>>>> 24e2f7f358c4860f42460ce39a5c50238e3a5db7
+
                     </form>
                     
                     <div id="food-photo"></div>
@@ -135,7 +135,7 @@ class SearchModal extends Component {
                 <Col md={6}>
 
                 </Col>
-=======
+
               <Col md={6}>
                 <h2>Let's see what you're eating.</h2>
                 <form action="#">
@@ -152,7 +152,7 @@ class SearchModal extends Component {
               <Col md={6}>
 
               </Col>
->>>>>>> 6b71e6ee627ebecde7002ed887a6adf0c93ea86e
+
             </Row>
           </MDBModalBody>
           <MDBModalFooter>
