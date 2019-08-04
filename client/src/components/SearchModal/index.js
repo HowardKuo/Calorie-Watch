@@ -35,7 +35,7 @@ class SearchModal extends Component {
     const file = document.querySelector("input[type=file]").files[0];
     const loader = "https://s3.amazonaws.com/static.mlh.io/icons/loading.svg";
     const reader = new FileReader();
-    console.log(file, 'hello')
+    // console.log(file, 'hello')
     // load local file picture
     reader.addEventListener("load", () => {
       preview.setAttribute('style', `background-image: url("${reader.result}");`);
@@ -63,18 +63,31 @@ class SearchModal extends Component {
         console.log(url)
 
         this.getNutritionalInfo(url, result => {
+          // console.log(result);
           
           const preParseCalorie = result.pods[4].subpods[0].img.alt;
-          // document.getElementById('concepts').html(`<h3>${tag}</h3><img src='${result}'>`);
-
-          console.log(preParseCalorie);
-
-
+          // console.log(preParseCalorie);
           const parsedCalorie = preParseCalorie.substring(
             preParseCalorie.lastIndexOf("total calories |") + 16,
             preParseCalorie.indexOf("Cal |", preParseCalorie.lastIndexOf("total calories |"))
           ).trim();
-          console.log(parsedCalorie)
+          console.log("Calories: " + parsedCalorie)
+
+          const preParseProtein = result.pods[7].subpods[0].img.alt;
+          // console.log(preParseProtein);
+          const parsedProtein = preParseProtein.substring(
+            preParseProtein.lastIndexOf("protein |") + 9,
+            preParseProtein.indexOf("g |", preParseProtein.lastIndexOf("protein |"))
+          ).trim();
+          console.log("Protein: " + parsedProtein)
+
+          const preParseFat = result.pods[6].subpods[0].img.alt;
+          // console.log(preParseFat);
+          const parsedFat = preParseFat.substring(
+            preParseFat.lastIndexOf("total fat |") + 12,
+            preParseFat.indexOf("g |", preParseFat.lastIndexOf("total fat |"))
+          ).trim();
+          console.log("Fat: " + parsedFat)
         });
 
       }
