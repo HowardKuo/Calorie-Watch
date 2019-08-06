@@ -29,11 +29,7 @@ loadFoods = () => {
   })
 }
 
-delete = id => {
-  const { name, value } = id.target;
-  this.setState({
-    [name]: value
-  });
+deleteItem = id => {
   API.deleteFood(id)
   .then(res => this.loadFoods())
   .catch(err => console.log(err));
@@ -64,7 +60,7 @@ render () {
                     <td>{each.calories}</td>
                     <td>{each.proteins}g</td>
                     <td>{each.fats}g</td>
-                    <MDBBtn rounded color="default" onClick={this.delete}>Delete</MDBBtn> 
+                    <MDBBtn rounded color="default" onClick={this.deleteItem}>Delete</MDBBtn> 
                   </tr>
                 )
               })}
