@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 import RegisterForm from '../components/RegisterModal';
-import ModalPage from '../components/LoginModal';
-import '../pages/style.css';
+import LoginModal from '../components/LoginModal';
+import '../pages/style.css'; 
 
 function Home() {
   return (
@@ -14,10 +14,10 @@ function Home() {
           <Col md={6} className="buttonBox">
             <div className="content">
               <h1>Calorie Counter </h1>
-              <p>Your goals start here.</p>
+              <p>"Health goals start here."</p>
               <div className="btnContainer">
                 <RegisterForm />
-                <ModalPage />
+                <LoginModal />
               </div>
             </div>  
           </Col>
