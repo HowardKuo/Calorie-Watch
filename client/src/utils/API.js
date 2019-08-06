@@ -13,10 +13,10 @@ export default  {
   // getSavedFoods: function() {
   //   return axios.get("/api/foods" + id);
   // },
-  // // Deletes the saved book with the given id
-  // deleteFood: function(id) {
-  //   return axios.delete("/api/foods/" + id);
-  // },
+  // Deletes the saved book with the given id
+  deleteFood: function(title) {
+    return axios.delete("/api/foods/" + title);
+  },
   // Saves an book to the database
   saveFood: function(foods, cb) {
     axios.post("/api/foods", foods).then(data => {
