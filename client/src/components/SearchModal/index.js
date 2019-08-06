@@ -38,7 +38,10 @@ class SearchModal extends Component {
     this.setState({
       [name]: value
     });
-    API.saveFood(this.state.foods)
+    API.saveFood(this.state.foods,data => {
+      console.log(data)
+      window.location.reload()
+    })
    // .then(() => this.getFoods());
   };
 
