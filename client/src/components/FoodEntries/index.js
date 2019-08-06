@@ -19,6 +19,7 @@ const FoodEntries = () => {
                 </tr>
             </MDBTableHead>
             <MDBTableBody>
+              <div id = "food-display" />
                 <tr>
                 <td>Orange</td>
                 <td>50</td>

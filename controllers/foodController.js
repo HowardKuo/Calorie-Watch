@@ -18,7 +18,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.Food.findOneAndUpdate({ id: req.params.id }, req.body)
+    db.Food.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbFood => res.json(dbFood))
       .catch(err => res.status(422).json(err));
   },

@@ -5,6 +5,7 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+
 // Configure body parsing for AJAX requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,11 +19,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(
-<<<<<<< HEAD
-  process.env.MONGODB_URI || "mongodb://localhost/foodlist",
-=======
-  process.env.MONGODB_URI || "mongodb://calorie-watch:project3@ds255577.mlab.com:55577/heroku_5mvshgqr",
->>>>>>> ffb8d4039f6e73145d6c8a4642647de8054979c9
+  process.env.MONGODB_URI || "mongodb://localhost/foods",
   {
     useCreateIndex: true,
     useNewUrlParser: true
