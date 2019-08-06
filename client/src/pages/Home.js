@@ -6,7 +6,8 @@ import RegisterForm from '../components/RegisterModal';
 import LoginModal from '../components/LoginModal';
 import '../pages/style.css'; 
 
-function Home() {
+class Home extends Component{
+render(){ {
   return (
     <div>
       <Row className="topRow">
@@ -26,5 +27,8 @@ function Home() {
     </div>
   );
 }
+}
+}
+
 
 export default Home;
