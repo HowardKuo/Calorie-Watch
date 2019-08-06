@@ -18,12 +18,19 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://user1:password1@ds125871.mlab.com:25871/heroku_0xn0jnk7",
+  process.env.MONGODB_URI || "mongodb://calorie-watch:project3@ds255577.mlab.com:55577/heroku_5mvshgqr",
   {
     useCreateIndex: true,
     useNewUrlParser: true
   }
 );
+
+let db = mongoose.connection;
+
+db.once('open', () => console.log('connected to the database'));
+
+// checks if connection with the database is successful
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // Start the API server
 app.listen(PORT, () =>
