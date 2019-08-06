@@ -3,8 +3,11 @@ import axios from "axios";
 
 export default  {
    
-  getFoods: function(q) {
-    return axios.get("/api/foods",);
+  getFoods: function(cb) {
+    return axios.get("/api/foods").then(data => {
+      //console.log(data)
+      cb(data)
+    });;
    },
   // // Gets all saved books
   // getSavedFoods: function() {
@@ -15,7 +18,10 @@ export default  {
   //   return axios.delete("/api/foods/" + id);
   // },
   // Saves an book to the database
-  saveFood: function(foods) {
-    return axios.post("/api/foods", foods);
+  saveFood: function(foods, cb) {
+    axios.post("/api/foods", foods).then(data => {
+      //console.log(data)
+      cb(data)
+    });
   }
 };

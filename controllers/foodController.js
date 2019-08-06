@@ -14,7 +14,11 @@ module.exports = {
   },
   create: function(req, res) {
     db.Food.create(req.body)
-      .then(dbFood => res.json(dbFood))
+      .then(dbFood => {
+        db.Food.find().then(data => {
+          res.json(data)
+        })
+      })
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
