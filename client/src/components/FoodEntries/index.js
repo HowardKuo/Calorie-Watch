@@ -3,11 +3,13 @@ import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../FoodEntries/style.css';
+import '../../utils/API'
 
 const FoodEntries = () => {
   return (
     <Row className="block">
         <Col md={12}>
+       
             <h3>Food Log</h3>
             <MDBTable hover>
             <MDBTableHead>

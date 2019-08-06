@@ -2,10 +2,10 @@ import axios from "axios";
 
 
 export default  {
-  // // Gets books from the Google API
-  // getFoods: function(q) {
-  //   return axios.get("/api/foods",);
-  // },
+   
+  getFoods: function(q) {
+    return axios.get("/api/foods",);
+   },
   // // Gets all saved books
   // getSavedFoods: function() {
   //   return axios.get("/api/foods" + id);
