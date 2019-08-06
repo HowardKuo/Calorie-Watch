@@ -4,8 +4,29 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../FoodEntries/style.css';
 import '../../utils/API'
+import API from '../../utils/API';
 
-const FoodEntries = () => {
+
+class FoodEntries extends React.Component {
+  state = {
+    data: []
+  }
+
+componentDidMount() {
+API.getFoods(response => {
+  console.log(response)
+  //result is total calories
+  const result = response.data.reduce((a,b) => a + parseInt(b.calories), 0)
+  console.log(result)
+  this.setState({
+    data: response.data,
+    totalCalories: result
+  })
+})
+}
+
+render () {
+
   return (
     <Row className="block">
         <Col md={12}>
@@ -22,29 +43,24 @@ const FoodEntries = () => {
             </MDBTableHead>
             <MDBTableBody>
               <div id = "food-display" />
-                <tr>
-                <td>Orange</td>
-                <td>50</td>
-                <td>1</td>
-                <td>0</td>
-                </tr>
-                <tr>
-                <td>Apple</td>
-                <td>2</td>
-                <td>0</td>
-                <td>0</td>
-                </tr>
-                <tr>
-                <td>Pizza</td>
-                <td>200</td>
-                <td>20</td>
-                <td>10</td>
-                </tr>
+              {this.state.data.map((each, index) => {
+                return (
+                  <tr>
+                    <td>{each.title}</td>
+                    <td>{each.calories}</td>
+                    <td>{each.proteins}</td>
+                    <td>{each.fats}</td>  
+                  </tr>
+                )
+              })}
+              <p>Total Calories: {this.state.totalCalories}</p>
+
             </MDBTableBody>
             </MDBTable>
         </Col>
     </Row> 
   );
+}
 }
 
 export default FoodEntries;
