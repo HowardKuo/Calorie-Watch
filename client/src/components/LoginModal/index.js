@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader } from 'mdbreact';
 
-class ModalPage extends Component {
+class LoginModal extends Component {
 state = {
   modal: false
 }
@@ -55,4 +55,4 @@ render() {
   }
 }
 
-export default ModalPage;
+export default LoginModal;

@@ -21,8 +21,8 @@ function Nav(props) {
     ]}
     subsets={['cyrillic-ext', 'greek']}
   />
-    <Navbar.Brand className="title" href="#home">
-    <p style={{ fontFamily: 'Teko, sans-serif' }}><FontAwesomeIcon icon={faUtensils} style={{ color: 'white' }} size="sm" />  Calorie Counter</p>
+    <Navbar.Brand className="title" href="../home">
+    <p style={{ fontFamily: 'Teko, sans-serif' }}>Calorie   <FontAwesomeIcon icon={faUtensils} style={{ color: 'white' }} size="sm" />   Counter</p>
     </Navbar.Brand>
   </Navbar>
 }
