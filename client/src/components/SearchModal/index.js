@@ -3,6 +3,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { MDBContainer,MDBBtn,MDBModal,MDBModalBody,MDBModalHeader,MDBModalFooter} from "mdbreact";
 import Clarifai from "clarifai";
+import Loader from '../Spinner';
+import '../SearchModal/style.css';
 import API from "../../utils/API";
 
 class SearchModal extends Component {
@@ -15,11 +17,13 @@ class SearchModal extends Component {
     },
     q: "",
     message: "search food to begin",
+    loading: false,
     modal6: false,
     modal7: false,
     myClarifaiApiKey: "f053c971305549908489be7fc05a6b27",
     myWolframAppId: "KTGHGJ-2Y5RK5JAPX"
   };
+
 
   toggle = nr => () => {
     let modalNumber = "modal" + nr;
@@ -212,93 +216,38 @@ class SearchModal extends Component {
     x.send(options.data);
   };
 
-  render() {
-    return (
-      <MDBContainer>
-        <MDBBtn color="default" onClick={this.toggle(9)}>
-          Upload Image
-        </MDBBtn>
-        <MDBModal
-          isOpen={this.state.modal9}
-          toggle={this.toggle(9)}
-          fullHeight
-          position="bottom"
-        >
-          <MDBModalHeader toggle={this.toggle(9)}>
-            Food Image Upload
-          </MDBModalHeader>
-          <MDBModalBody>
+render() {
+  return (
+    <MDBContainer>
+      <MDBBtn color="default" onClick={this.toggle(9)}>Uplaod Image</MDBBtn>
+      <MDBModal isOpen={this.state.modal9} toggle={this.toggle(9)} fullHeight position="bottom">
+        <MDBModalHeader toggle={this.toggle(9)}><h2 className="title">Let's see what you're eating.</h2></MDBModalHeader>
+        <MDBModalBody>
             <Row>
-              <Col md={6}>
-                <h2>Let's see what you're eating.</h2>
-                <form action="#">
-                  <input
-                    type="file"
-                    id="filename"
-                    placeholder="Filename"
-                    size="100"
-                  />
-
-                  <MDBBtn
-                    onClick={() =>
-                      "predict_click($('#filename').val(), 'file'); return false;"
-                    }
-                  >
-                    Get my Nutritional Breakdown!
-                  </MDBBtn>
-
-                  <MDBBtn
-                    onClick={() => {
-                      this.predict_click(
-                        document.getElementById("filename").value,
-                        "file"
-                      );
-                      return false;
-                    }}
-                  >
-                    Get my Nutritional Breakdown!
-                  </MDBBtn>
-                </form>
-
-                <div id="food-photo" />
-              </Col>
-              <Col md={6} />
-
-              <Col md={6}>
-                <h2>Let's see what you're eating.</h2>
-                <form action="#">
-                  <input
-                    type="file"
-                    id="filename"
-                    placeholder="Filename"
-                    size="100"
-                  />
-                  <MDBBtn
-                    onClick={() => {
-                      this.predict_click(
-                        document.getElementById("filename").value,
-                        "file"
-                      );
-                      return false;
-                    }}
-                  >
-                    Get my Nutritional Breakdown!
-                  </MDBBtn>
-                </form>
-
-                <div id="food-photo" />
-              </Col>
-              <Col md={6} />
+                <Col md={6}>
+                  <p>Upload photo below.</p>
+                  <form action="#">
+                      <input type="file" id="filename" placeholder="Filename" size="100"/>
+                      <MDBBtn onClick={() => {
+                          this.predict_click(document.getElementById('filename').value, 'file');
+                          return false;
+                        }
+                      }>{ this.state.loading && <Loader /> }
+                      &ensp;Get my Nutritional Breakdown!</MDBBtn>
+                  </form>
+                  <div id="food-photo"></div>
+                </Col>
+                <Col md={6}>
+                  <div id="items"></div>
+                </Col>
             </Row>
-          </MDBModalBody>
-          <MDBModalFooter>
-            <MDBBtn color="secondary" onClick={this.handleInputChange}>
-              Accept
-            </MDBBtn>
-          </MDBModalFooter>
-        </MDBModal>
-      </MDBContainer>
-    );
+        </MDBModalBody>
+        <MDBModalFooter>
+          <MDBBtn rounded color="default" onClick={this.handleInputChange}>Accept</MDBBtn>
+        </MDBModalFooter>
+      </MDBModal>
+    </MDBContainer>
+    )
   }
 }
 
