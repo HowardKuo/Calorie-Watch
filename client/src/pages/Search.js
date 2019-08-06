@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 //import { Link } from 'react-router-dom';
 import { Col, Row, Container } from '../components/Grid';
 import Jumbotron from '../components/Jumbotron';
-import ViewBtn from '../components/ViewBtn';
-import SaveBtn from '../components/SaveBtn';
+
 import API from "../utils/API";
 import { List, ListItem } from "../components/List";
 import { Input, FormBtn } from "../components/Form";
@@ -47,13 +46,12 @@ class Search extends Component {
     const food = this.state.foods.find(food => food.id === id);
 
     API.saveFood({
-      wolfId: food.id,
-      title: food.volumeInfo.title,
-      subtitle: food.volumeInfo.subtitle,
-      link: food.volumeInfo.infoLink,
-      authors: food.volumeInfo.authors,
-      description: food.volumeInfo.description,
-      image: food.volumeInfo.imageLinks.thumbnail
+      title: food.nutritionInfo.title,
+      calories: food.nutritionInfo.calories,
+      proteins: food.nutritionInfo.proteins,
+      fats: food.nutritionInfo.fats
+
+     
     }).then(() => this.getFoods());
   };
 
