@@ -241,7 +241,12 @@ render() {
                   <div id="food-photo"></div>
                 </Col>
                 <Col md={6}>
-                  <div id="items"></div>
+                  <div id="items">
+                    <h4>Food: {this.state.foods.title}</h4>
+                    <h5>Calroies: {this.state.foods.calories}</h5>
+                    <h5>Protein (g): {this.state.foods.proteins}</h5>
+                    <h5>Fats (g): {this.state.foods.fats}</h5>
+                  </div>
                 </Col>
             </Row>
         </MDBModalBody>

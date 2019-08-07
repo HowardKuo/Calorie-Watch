@@ -19,12 +19,17 @@ componentDidMount() {
 loadFoods = () => {
   API.getFoods(response => {
     console.log(response)
-    //result is total calories
-    const result = response.data.reduce((a,b) => a + parseInt(b.calories), 0)
-    console.log(result)
+    const totalCalories = response.data.reduce((a,b) => a + parseInt(b.calories), 0)
+    console.log(totalCalories)
+    const totalProteins = response.data.reduce((a,b) => a + parseInt(b.proteins), 0)
+    console.log(totalProteins)
+    const totalFats = response.data.reduce((a,b) => a + parseInt(b.fats), 0)
+    console.log(totalFats)
     this.setState({
       data: response.data,
-      totalCalories: result
+      totalCalories: totalCalories,
+      totalProteins: totalProteins,
+      totalFats: totalFats
     })
   })
 }
@@ -64,8 +69,12 @@ render () {
                   </tr>
                 )
               })}
-              <p>Total Calories: {this.state.totalCalories}</p>
-
+              <tr>
+                <td></td>
+                <td><p>Total Calories: {this.state.totalCalories}</p></td>
+                <td><p>Total Proteins: {this.state.totalProteins}</p></td>
+                <td><p>Total Fats: {this.state.totalFats}</p></td>
+              </tr>
             </MDBTableBody>
             </MDBTable>
         </Col>
