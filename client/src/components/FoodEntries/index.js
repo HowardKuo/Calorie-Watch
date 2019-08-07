@@ -60,7 +60,7 @@ render () {
                     <td>{each.calories}</td>
                     <td>{each.proteins}g</td>
                     <td>{each.fats}g</td>
-                    <MDBBtn rounded color="default" onClick={this.deleteItem}>Delete</MDBBtn> 
+                    <MDBBtn rounded color="default" onClick={() => this.deleteItem(each._id)}>Delete</MDBBtn> 
                   </tr>
                 )
               })}
