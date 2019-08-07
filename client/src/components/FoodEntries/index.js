@@ -52,7 +52,7 @@ render () {
                 <tr>
                 <th>Food Item</th>
                 <th>Calories</th>
-                <th>Protien</th>
+                <th>Protein</th>
                 <th>Fat</th>
                 </tr>
             </MDBTableHead>
