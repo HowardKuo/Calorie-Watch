@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import { MDBTable, MDBTableBody, MDBTableHead, MDBBtn } from 'mdbreact';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import '../FoodEntries/style.css';
@@ -13,16 +13,31 @@ class FoodEntries extends React.Component {
   }
 
 componentDidMount() {
-API.getFoods(response => {
-  console.log(response)
-  //result is total calories
-  const result = response.data.reduce((a,b) => a + parseInt(b.calories), 0)
-  console.log(result)
-  this.setState({
-    data: response.data,
-    totalCalories: result
+ this.loadFoods();
+}
+
+loadFoods = () => {
+  API.getFoods(response => {
+    console.log(response)
+    const totalCalories = response.data.reduce((a,b) => a + parseInt(b.calories), 0)
+    console.log(totalCalories)
+    const totalProteins = response.data.reduce((a,b) => a + parseInt(b.proteins), 0)
+    console.log(totalProteins)
+    const totalFats = response.data.reduce((a,b) => a + parseInt(b.fats), 0)
+    console.log(totalFats)
+    this.setState({
+      data: response.data,
+      totalCalories: totalCalories,
+      totalProteins: totalProteins,
+      totalFats: totalFats
+    })
   })
-})
+}
+
+deleteItem = id => {
+  API.deleteFood(id)
+  .then(res => this.loadFoods())
+  .catch(err => console.log(err));
 }
 
 render () {
@@ -37,7 +52,7 @@ render () {
                 <tr>
                 <th>Food Item</th>
                 <th>Calories</th>
-                <th>Protien</th>
+                <th>Protein</th>
                 <th>Fat</th>
                 </tr>
             </MDBTableHead>
@@ -48,13 +63,18 @@ render () {
                   <tr>
                     <td>{each.title}</td>
                     <td>{each.calories}</td>
-                    <td>{each.proteins}</td>
-                    <td>{each.fats}</td>  
+                    <td>{each.proteins}g</td>
+                    <td>{each.fats}g</td>
+                    <MDBBtn rounded color="default" onClick={() => this.deleteItem(each._id)}>Delete</MDBBtn> 
                   </tr>
                 )
               })}
-              <p>Total Calories: {this.state.totalCalories}</p>
-
+              <tr>
+                <td></td>
+                <td><p>Total Calories: {this.state.totalCalories}</p></td>
+                <td><p>Total Proteins: {this.state.totalProteins}</p></td>
+                <td><p>Total Fats: {this.state.totalFats}</p></td>
+              </tr>
             </MDBTableBody>
             </MDBTable>
         </Col>

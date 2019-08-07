@@ -223,7 +223,7 @@ class SearchModal extends Component {
 render() {
   return (
     <MDBContainer>
-      <MDBBtn color="default" onClick={this.toggle(9)}>Uplaod Image</MDBBtn>
+      <MDBBtn color="default" onClick={this.toggle(9)}>Upload Image</MDBBtn>
       <MDBModal isOpen={this.state.modal9} toggle={this.toggle(9)} fullHeight position="bottom">
         <MDBModalHeader toggle={this.toggle(9)}><h2 className="title">Let's see what you're eating.</h2></MDBModalHeader>
         <MDBModalBody>
@@ -242,7 +242,12 @@ render() {
                   <div id="food-photo"></div>
                 </Col>
                 <Col md={6}>
-                  <div id="items"></div>
+                  <div id="items">
+                    <h4>Food: {this.state.foods.title}</h4>
+                    <h5>Calories: {this.state.foods.calories}</h5>
+                    <h5>Protein (g): {this.state.foods.proteins}</h5>
+                    <h5>Fats (g): {this.state.foods.fats}</h5>
+                  </div>
                 </Col>
             </Row>
         </MDBModalBody>
