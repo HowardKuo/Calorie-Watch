@@ -23,7 +23,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.Food.findById(req.params.id)
+    db.Food.findById({ _id: req.params.id })
       .then(dbFood => dbFood.remove())
       .then(dbFood => res.json(dbFood))
       .catch(err => res.status(422).json(err));
