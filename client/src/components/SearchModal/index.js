@@ -3,9 +3,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { MDBContainer,MDBBtn,MDBModal,MDBModalBody,MDBModalHeader,MDBModalFooter} from "mdbreact";
 import Clarifai from "clarifai";
-import Loader from '../Spinner';
-import '../SearchModal/style.css';
+import Loader from "../Spinner";
+import "../SearchModal/style.css";
 import API from "../../utils/API";
+
 
 class SearchModal extends Component {
   state = {
@@ -251,7 +252,10 @@ render() {
             </Row>
         </MDBModalBody>
         <MDBModalFooter>
-          <MDBBtn rounded color="default" onClick={this.handleInputChange}>Accept</MDBBtn>
+          
+          <MDBBtn rounded color="default" onClick={this.handleInputChange}>Accept
+          
+          </MDBBtn>
         </MDBModalFooter>
       </MDBModal>
     </MDBContainer>

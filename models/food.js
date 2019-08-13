@@ -8,8 +8,9 @@ const foodSchema = new Schema({
   fats: { type: Number, required: true},
   date: { type: Date, default: Date.now }
   
+  
 });
 
-const Food = mongoose.model("Food", foodSchema);
 
-module.exports = Food;
+
+module.exports = Food = mongoose.model("food", foodSchema);;
