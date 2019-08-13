@@ -86,9 +86,9 @@ class Search extends Component {
                     <Food
                       key={food.id}
                       title={food.nutritionInfo.title}
-                      subtitle={food.nutritionInfo.subtitle}
-                      link={food.nutritionInfo.infoLink}
-                      authors={food.nutritionInfo.authors.join(", ")}
+                      calories={food.nutritionInfo.calories}
+                      proteins={food.nutritionInfo.proteins}
+                      fats={food.nutritionInfo.fats.join(", ")}
                       description={food.nutritionInfo.description}
                       image={food.nutritionInfo.imageLinks.thumbnail}
                       Button={() => (

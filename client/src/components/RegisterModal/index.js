@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader } from 'mdbreact';
 import { withFirebase } from '../Firebase';
+import { registerUser } from "../../actions/authActions";
+import { connect } from "react-redux";
+
 
 const INITIAL_STATE = {
   username: '',
@@ -10,7 +13,7 @@ const INITIAL_STATE = {
   error: null,
 };
 
-class RegisterForm extends Component {
+class RegisterModal extends Component {
   constructor(props) {
     super(props);
 
@@ -149,4 +152,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default RegisterForm;
+export default RegisterModal;
