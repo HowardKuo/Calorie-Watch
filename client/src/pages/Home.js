@@ -13,8 +13,8 @@ function Home() {
         <Container className="contain">
           <Col md={6} className="buttonBox">
             <div className="content">
-              <h1>Calorie Counter </h1>
-              <p>"Health goals start here."</p>
+              <h1 id="hide">Calorie Counter </h1>
+              <p id="hide">"Health goals start here." </p>
               <div className="btnContainer">
                 <RegisterForm />
                 <LoginModal />
