@@ -5,3 +5,11 @@
 .progress.md-progress {
     margin: 15px;
 }
+
+.bg {
+  background-color: green;
+}
+
+.bg-danger {
+  background-color: green !important;
+}
