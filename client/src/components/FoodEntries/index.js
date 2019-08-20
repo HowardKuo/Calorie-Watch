@@ -18,13 +18,13 @@ componentDidMount() {
 
 loadFoods = () => {
   API.getFoods(response => {
-    console.log(response)
+    // console.log(response)
     const totalCalories = response.data.reduce((a,b) => a + parseInt(b.calories), 0)
-    console.log(totalCalories)
+    // console.log(totalCalories)
     const totalProteins = response.data.reduce((a,b) => a + parseInt(b.proteins), 0)
-    console.log(totalProteins)
+    // console.log(totalProteins)
     const totalFats = response.data.reduce((a,b) => a + parseInt(b.fats), 0)
-    console.log(totalFats)
+    // console.log(totalFats)
     this.setState({
       data: response.data,
       totalCalories: totalCalories,
