@@ -7,7 +7,7 @@ import API from '../../utils/API';
 
 class Progress extends React.Component {
 state = {  
-    
+    inputCalories: 2000
 }
 
 componentDidMount() {
@@ -18,13 +18,20 @@ loadCalories = () => {
 
     API.getFoods(response => {
         console.log(response)
-        const totalCalories = response.data.reduce((a,b) => a + parseInt(b.calories), 0)
+        const totalCalories = response.data.reduce((a,b) => a + parseInt(b.calories), 0) 
         this.setState({
             totalCalories: totalCalories,
-            progressBar: (totalCalories/2000) * 100,
+            progressBar: (totalCalories/this.state.inputCalories) * 100,
         })
+        console.log(this.state.totalCalories, this.state.progressBar, this.state.inputCalories)
     })
 }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.inputCalories !== this.state.inputCalories) {
+      this.loadCalories();
+    }
+  }
 
 
 render () {
@@ -41,7 +48,8 @@ render () {
                     </Col>
                 </Row>
                 <Row>
-
+                    <label>Daily Calories: </label>
+                    <input type="text"  placeholder={this.state.inputCalories} onChange = {event => this.setState({inputCalories: event.target.value})}  />
                 </Row>
                 </div>  
             </Col>
